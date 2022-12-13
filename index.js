@@ -9,6 +9,8 @@ const port = process.env.port
 app.set("view engine", "ejs")
 app.set("views", join(__dirname, "src/views"))
 app.use(express.static(join(__dirname, "src/public")))
+
+
 const PageFile = readdirSync(`./src/pages`).filter(files => files.endsWith(".js"))
 for(const file of PageFile) {
 	const { execute, name } = require(`./src/pages/${file}`)
@@ -16,6 +18,7 @@ for(const file of PageFile) {
 		execute(req, res)
 	})
 }
+
 
 app.use(function(req, res){
     res.status(404).send("🍌, 404")
