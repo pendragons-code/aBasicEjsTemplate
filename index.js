@@ -14,7 +14,7 @@ app.use(express.static(join(__dirname, "src/public")))
 const PageFile = readdirSync(`./src/pages`).filter(files => files.endsWith(".js"))
 for(const file of PageFile) {
 	const { execute, name } = require(`./src/pages/${file}`)
-	app.get(name, async(req, res) => {
+	app.get(name, async (req, res) => {
 		execute(req, res)
 	})
 }
